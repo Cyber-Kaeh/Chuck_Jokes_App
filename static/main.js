@@ -29,6 +29,9 @@ async function getChuckJoke() {
     }
 }
 
+let name;
+let desc;
+
 async function getQuote() {
     const url = 'https://quotes15.p.rapidapi.com/quotes/random/?language_code=en';
     const options = {
@@ -42,9 +45,9 @@ async function getQuote() {
     try {
         const response = await fetch(url, options);
         const result = await response.json();
-        const name = result.originator.name;
+        name = result.originator.name;
         const content = result.content;
-        const desc = result.originator.description;
+        desc = result.originator.description;
         document.getElementById('quote').innerHTML = `<p>Name: ${name}<br>Quote: ${content}`;
         console.log(desc);
         console.log()
@@ -52,6 +55,15 @@ async function getQuote() {
         console.error(error);
     }
 }
+
+const myModal = document.getElementById("quoteModal")
+
+myModal.addEventListener('shown.bs.modal', () => {
+    // myInput.focus()
+    document.getElementById('quote-modal-title').innerHTML = name
+    document.getElementById('quote-modal-body').innerHTML = desc
+  })
+  
 
 getChuckJoke();
 getQuote();
