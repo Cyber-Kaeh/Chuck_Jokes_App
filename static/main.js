@@ -59,7 +59,9 @@ async function getQuote() {
 const myModal = document.getElementById("quoteModal")
 
 myModal.addEventListener('shown.bs.modal', () => {
-    // myInput.focus()
+    if (desc == '') {
+        desc = "Sorry, no further information found to display"
+    }
     document.getElementById('quote-modal-title').innerHTML = name
     document.getElementById('quote-modal-body').innerHTML = desc
   })
